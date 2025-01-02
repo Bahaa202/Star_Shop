@@ -1,0 +1,68 @@
+<div class="container m-5">
+  <h1 class="text-center my-5">Profile Information</h1>
+  <div class="w-50 m-auto shadow p-2 rounded-3 d-flex justify-content-center align-items-center">
+    <div class="w-25">
+      <img class="w-75 rounded-3" [src]="profile?.image" [alt]="profile?.name">
+    </div>
+    <div>
+      <div class="w-75 m-auto my-4">
+        <label>username : {{ profile?.username }}</label>
+      </div>
+      <div class="w-75 m-auto my-4">
+        <label>Email : {{ profile?.email }}</label>
+      </div>
+      <div class="w-75 m-auto my-4">
+        <label>google login :{{ profile?.googleId ? 'yes' : 'No' }}</label>
+      </div>
+      <div class="w-75 m-auto my-4">
+        <input class="form-control" (keyup)="this.name=userName.value" #userName type="text" placeholder="name"
+               [value]="profile?.name">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <input (change)="saveImage($event)" class="form-control" type="file" accept="image/*">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <button (click)="updateProfile()" class="btn btn-danger">Update Data</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-5">
+
+@if (profile.hasPassword) {
+  <div class="container m-5">
+    <h1 class="text-center my-5">Change Password</h1>
+    <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword(changePasswordForm)"
+          class="w-50 m-auto shadow p-2 rounded-3">
+      <div class="w-75 m-auto my-4">
+        <input formControlName="currentPassword" class="form-control" type="password" placeholder="current password">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <input formControlName="password" class="form-control" type="password" placeholder="password">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <input formControlName="confirmPassword" class="form-control" type="password" placeholder="confirm password">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <button class="btn btn-danger">Update Password</button>
+      </div>
+    </form>
+  </div>
+} @else {
+  <div class="container m-5">
+    <h1 class="text-center my-5">Create Password</h1>
+    <form [formGroup]="createPasswordForm" (ngSubmit)="createPassword(createPasswordForm)"
+          class="w-50 m-auto shadow p-2 rounded-3">
+      <div class="w-75 m-auto my-4">
+        <input formControlName="password" class="form-control" type="password" placeholder="password">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <input formControlName="confirmPassword" class="form-control" type="password" placeholder="confirm password">
+      </div>
+      <div class="w-75 m-auto my-4">
+        <button class="btn btn-danger">Create Password</button>
+      </div>
+    </form>
+  </div>
+}

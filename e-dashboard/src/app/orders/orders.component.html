@@ -1,0 +1,83 @@
+<div class="p-3 m-auto">
+  <h2 class="text-center my-5">All Orders</h2>
+  <hr class="my-3">
+  <div class="d-flex justify-content-between">
+    <input class="form-control me-2 w-25" type="search" placeholder="Search" aria-label="Search">
+  </div>
+  <hr class="my-3">
+  <table class="w-100">
+    <thead>
+    <tr class="border-bottom">
+      <th>#</th>
+      <th>ID</th>
+      <th>user</th>
+      <th>Products</th>
+      <th>Payment</th>
+      <th>Delivered</th>
+      <th>Paid</th>
+      <th>items price</th>
+      <th>tax price</th>
+      <th>total price</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (order of orders; track order._id) {
+        <tr class="m-5 border-bottom">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ order._id.slice(-6) }}</td>
+          <td>{{ order.user.name }}</td>
+          <td>
+            @for (item of order.items; track item._id) {
+              <img class="mx-3" width="50px" [src]="item.product.cover"
+                   [alt]="item.product.name">{{ item.product.name }}
+              <br><br>
+            }
+          </td>
+          <td>{{ order.payment }}</td>
+          <td>@if (order.isDelivered) {
+            {{ order.deliveredAt|date }}
+          } @else {
+            No
+          }</td>
+          <td>@if (order.isPaid) {
+            {{ order.paidAt|date }}
+          } @else {
+            No
+          }</td>
+          <td>{{ order.itemsPrice|currency:'EUR' }}</td>
+          <td>{{ order.taxPrice|currency:'EUR' }}</td>
+          <td>{{ order.totalPrice|currency:'EUR' }}</td>
+          <td>
+            <button [disabled]="order.isDelivered" (click)="deliverOrder(order._id)"
+                    class="btn btn-primary mx-3 btn-sm rounded-3">Deliver Order
+            </button>
+            <button [disabled]="order.isPaid" (click)="payOrder(order._id)" class="btn btn-primary btn-sm rounded-3">Pay
+              Order
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="container m-auto mt-5 w-25">
+  <ul class="pagination">
+    <li class="page-item">
+      <button class="page-link">First</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link">Previous</button>
+    </li>
+    <li class="page-item">
+      <button disabled class="page-link">Current</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link">Next</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link">Last</button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,53 @@
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Menu Bar</h5>
+    <span class="text-muted"></span>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/home'
+           ariaCurrentWhenActive="page">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/categories'
+           ariaCurrentWhenActive="page">Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/subcategories'
+           ariaCurrentWhenActive="page">Subcategories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/products'
+           ariaCurrentWhenActive="page">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/coupons'
+           ariaCurrentWhenActive="page">Coupons</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/orders'
+           ariaCurrentWhenActive="page">Orders</a>
+      </li>
+      @if (role === 'admin') {
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink='/users'
+             ariaCurrentWhenActive="page">Users</a>
+        </li>
+      }
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink='/profile'
+           ariaCurrentWhenActive="page">Profile</a>
+      </li>
+      <li class="nav-item">
+        <button (click)="logout()" class="nav-link" aria-current="page" ariaCurrentWhenActive="page">logout</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
