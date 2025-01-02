@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="container d-flex mt-5 justify-content-around">
+  <div>
+    <input (keyup)="searchProducts(search.value)" #search class="form-control mx-2" type="search" placeholder="Search"
+           aria-label="Search">
+  </div>
+</div>
+
+@if (products.length > 0) {
+  <div class="row m-auto container mt-4">
+    @for (product of products; track product._id) {
+      <div class="card m-2 col-4" style="width: 18rem;">
+        <img [src]="product.cover" class="card-img-top w-100 h-50" [alt]="product.name">
+        <div class="card-body position-relative">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description|description:7 }}...</p>
+          <p class="card-text">price : {{ product.price|currency:'EUR' }}</p>
+          <p class="card-text">{{ product.rateAvg|number:'1.1-1' }} &star; - count {{ product.rating }}</p>
+          <div class="position-absolute btn-card">
+            <a [routerLink]="[product._id]" class="btn btn-primary mx-2">See More</a>
+            <button class="btn btn-success mx-2">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+} @else {
+  <h2 class="text-center text-danger my-5 p-2">try again later...</h2>
+}
+
+<div class="container m-auto mt-5 w-25">
+  <ul class="pagination">
+    <li class="page-item">
+      <button (click)="changePage(1)" class="page-link">First</button>
+    </li>
+    @if (pagination.prev) {
+      <li class="page-item">
+        <button (click)="changePage(pagination.prev)" class="page-link">{{ pagination.prev }}</button>
+      </li>
+    }
+    <li class="page-item">
+      <button disabled class="page-link">{{ pagination.currentPage }}</button>
+    </li>
+    @if (pagination.next) {
+      <li class="page-item">
+        <button (click)="changePage(pagination.next)" class="page-link">{{ pagination.next }}</button>
+      </li>
+    }
+    <li class="page-item">
+      <button (click)="changePage(pagination.totalPages!)" class="page-link">Last</button>
+    </li>
+  </ul>
+</div>
