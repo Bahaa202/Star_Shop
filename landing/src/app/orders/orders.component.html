@@ -1,9 +1,9 @@
 <div class="container">
   <h2 class="text-center my-5">My Orders</h2>
-  <hr class="my-3">
+  <hr class="my-3" />
   @if (orders.length > 0) {
-    <table class="w-100">
-      <thead>
+  <table class="w-100">
+    <thead>
       <tr class="border-bottom">
         <th>products</th>
         <th>Delivered</th>
@@ -13,42 +13,42 @@
         <th>Products Price</th>
         <th>Total Price</th>
       </tr>
-      </thead>
-      <tbody>
-        @for (order of orders; track order._id) {
-          <tr class="m-5 border-bottom">
-            <td>
-              @for (item of order.items; track item._id) {
-                <img class="mx-3" width="50px" [src]="item?.product?.cover"
-                     [alt]="item?.product?.name">{{ item.product.name }} | {{ item.quantity }}
-                <br>
-                <br>
-              }
-            </td>
-            <td>
-              @if (order.deliveredAt) {
-                {{ order.deliveredAt|date }}
-              } @else {
-                No
-              }
-            </td>
-            <td>
-              @if (order.paidAt) {
-                {{ order.paidAt|date }}
-              } @else {
-                No
-              }
-            </td>
-            <td>{{ order?.payment }}</td>
-            <td>{{ order.taxPrice|currency:'EUR' }}</td>
-            <td>{{ order.itemsPrice|currency:'EUR' }}</td>
-            <td>{{ order.totalPrice|currency:'EUR' }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+    </thead>
+    <tbody>
+      @for (order of orders; track order._id) {
+      <tr class="m-5 border-bottom">
+        <td>
+          @for (item of order.items; track item._id) {
+          <img
+            class="mx-3"
+            width="50px"
+            [src]="item?.product?.cover"
+            alt="item?.product?.name"
+          />{{ item.product.name }} | {{ item.quantity }}
+          <br />
+          <br />
+          }
+        </td>
+        <td>
+          @if (order.deliveredAt) {
+          {{ order.deliveredAt | date }}
+          } @else { No }
+        </td>
+        <td>
+          @if (order.paidAt) {
+          {{ order.paidAt | date }}
+          } @else { No }
+        </td>
+        <td>{{ order?.payment }}</td>
+        <td>{{ order.taxPrice | currency : "EUR" }}</td>
+        <td>{{ order.itemsPrice | currency : "EUR" }}</td>
+        <td>{{ order.totalPrice | currency : "EUR" }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
   } @else {
-    <h2 class="text-center text-capitalize my-5">you don't have any orders</h2>
+  <h2 class="text-center text-capitalize my-5">you don't have any orders</h2>
   }
 </div>
 
@@ -58,20 +58,26 @@
       <button (click)="changePage(1)" class="page-link">First</button>
     </li>
     @if (pagination.prev) {
-      <li class="page-item">
-        <button (click)="changePage(pagination.prev)" class="page-link">{{ pagination.prev }}</button>
-      </li>
+    <li class="page-item">
+      <button (click)="changePage(pagination.prev)" class="page-link">
+        {{ pagination.prev }}
+      </button>
+    </li>
     }
     <li class="page-item">
       <button disabled class="page-link">{{ pagination.currentPage }}</button>
     </li>
     @if (pagination.next) {
-      <li class="page-item">
-        <button (click)="changePage(pagination.next)" class="page-link">{{ pagination.next }}</button>
-      </li>
+    <li class="page-item">
+      <button (click)="changePage(pagination.next)" class="page-link">
+        {{ pagination.next }}
+      </button>
+    </li>
     }
     <li class="page-item">
-      <button (click)="changePage(pagination.totalPages!)" class="page-link">Last</button>
+      <button (click)="changePage(pagination.totalPages!)" class="page-link">
+        Last
+      </button>
     </li>
   </ul>
 </div>

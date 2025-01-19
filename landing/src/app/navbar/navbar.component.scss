@@ -1,0 +1,72 @@
+/* navbar.component.scss */
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  .nav-link {
+    color: #333;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #007bff;
+    }
+
+    &.active {
+      color: #007bff;
+      font-weight: bold;
+    }
+  }
+
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .dropdown-item {
+      color: #333;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+
+  .fa-cart-shopping,
+  .fa-heart {
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    .navbar-collapse {
+      margin-top: 1rem;
+    }
+
+    .nav-link {
+      margin: 0.5rem 0;
+    }
+
+    .dropdown-menu {
+      margin-left: 1rem;
+    }
+  }
+}

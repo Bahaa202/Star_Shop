@@ -1,0 +1,38 @@
+/* header.component.scss */
+
+.header-container {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .header-content {
+    text-align: center;
+    margin: 1rem;
+
+    .header-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  .header-image {
+    width: 100px; // Adjust the size as needed
+    height: auto;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+
+    .header-image {
+      margin-top: 1rem;
+    }
+  }
+}
