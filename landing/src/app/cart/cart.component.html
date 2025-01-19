@@ -1,96 +1,150 @@
-<section class="h-100">
+<!-- shopping-cart.component.html -->
+
+<section class="shopping-cart-section">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+        <div class="card card-registration">
           <div class="card-body p-0">
             <div class="row g-0">
               <div class="col-lg-8">
                 <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0">Shopping Cart</h1>
-                    <h6 class="mb-0 text-muted">{{ cart?.items.length || 0 }} items</h6>
+                  <div class="cart-header">
+                    <h1>Shopping Cart</h1>
+                    <h6>{{ cart?.items.length || 0 }} items</h6>
                   </div>
-                  <hr class="my-4">
+                  <hr class="my-4" />
 
-                  @if (cart) {
-                    @for (item of cartItems; track item._id) {
-                      <div class="row mb-4 d-flex justify-content-between align-items-center">
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                          <img [src]="item?.product?.cover" class="img-fluid rounded-3" [alt]="item?.product?.name">
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                          <h6 class="text-muted">{{ item?.product?.subcategory?.name }}</h6>
-                          <h6 class="mb-0">{{ item?.product?.name }}</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <h6 class="mb-0">{{ item?.quantity }}</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h6 class="mb-0">{{ item?.price|currency:'EUR' }}</h6>
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <button (click)="removeFromCart(item._id)" class="text-muted nav-link"><i
-                            class="fas fa-times"></i></button>
-                        </div>
-                      </div>
-                      <hr class="my-4">
-                    }
-                    <button (click)="clearCart()" class="btn btn-danger">Clear Cart</button>
+                  @if (cart) { @for (item of cartItems; track item._id) {
+                  <div
+                    class="cart-item row mb-4 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="item-image col-md-2 col-lg-2 col-xl-2">
+                      <img
+                        [src]="item?.product?.cover"
+                        class="img-fluid rounded-3"
+                        alt="item?.product?.name"
+                      />
+                    </div>
+                    <div class="item-details col-md-3 col-lg-3 col-xl-3">
+                      <h6 class="subcategory">
+                        {{ item?.product?.subcategory?.name }}
+                      </h6>
+                      <h6>{{ item?.product?.name }}</h6>
+                    </div>
+                    <div
+                      class="item-quantity col-md-3 col-lg-3 col-xl-2 d-flex"
+                    >
+                      <h6>{{ item?.quantity }}</h6>
+                    </div>
+                    <div
+                      class="item-price col-md-3 col-lg-2 col-xl-2 offset-lg-1"
+                    >
+                      <h6>{{ item?.price | currency : "EUR" }}</h6>
+                    </div>
+                    <div
+                      class="item-remove col-md-1 col-lg-1 col-xl-1 text-end"
+                    >
+                      <button
+                        type="button"
+                        (click)="removeFromCart(item._id)"
+                        class="text-muted nav-link"
+                        title="Remove item"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <hr class="my-4" />
+                  }
+                  <button
+                    type="button"
+                    (click)="clearCart()"
+                    class="btn btn-danger clear-cart-button"
+                  >
+                    Clear Cart
+                  </button>
                   } @else {
-                    <h2 class="text-center my-5">{{ cartError }}</h2>
+                  <h2 class="cart-error">{{ cartError }}</h2>
                   }
                 </div>
               </div>
 
-
-              <div class="col-lg-4 bg-body-tertiary">
+              <div class="col-lg-4">
                 <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                  <hr class="my-4">
-
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5 class="text-uppercase">{{ cart?.items.length || 0 }} items</h5>
-                    <h5>{{ cart?.totalPrice || 0 |currency:'EUR' }}</h5>
+                  <div class="summary-header">
+                    <h3>Summary</h3>
                   </div>
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5 class="text-uppercase">tax price</h5>
-                    <h5>{{ cart?.taxPrice || 0|currency:'EUR' }}</h5>
+                  <hr class="my-4" />
+
+                  <div class="summary-item">
+                    <h5>{{ cart?.items.length || 0 }} items</h5>
+                    <h5>{{ cart?.totalPrice || 0 | currency : "EUR" }}</h5>
+                  </div>
+                  <div class="summary-item">
+                    <h5>Tax Price</h5>
+                    <h5>{{ cart?.taxPrice || 0 | currency : "EUR" }}</h5>
                   </div>
 
-                  <hr class="my-4">
+                  <hr class="my-4" />
 
-                  <form [formGroup]="couponsForm" (ngSubmit)="applyCoupon(couponsForm)">
-                    <h5 class="text-capitalize mb-3">Have Coupon.?</h5>
-
+                  <form
+                    [formGroup]="couponsForm"
+                    (ngSubmit)="applyCoupon(couponsForm)"
+                    class="coupon-form"
+                  >
+                    <h5>Have Coupon?</h5>
                     <div class="mb-5">
-                      <div data-mdb-input-init class="form-outline">
-                        <input formControlName="coupon" type="text" id="form3Examplea2"
-                               class="form-control form-control-lg"/>
-                      </div>
+                      <label for="couponInput">Coupon Code</label>
+                      <input
+                        id="couponInput"
+                        formControlName="coupon"
+                        type="text"
+                        class="form-control form-control-lg"
+                        placeholder="Enter coupon code"
+                      />
                     </div>
-                    <button [disabled]="couponsForm.invalid" class="btn btn-outline-danger">Apply Coupon</button>
+                    <button
+                      type="submit"
+                      [disabled]="couponsForm.invalid"
+                      class="btn btn-outline-danger"
+                    >
+                      Apply Coupon
+                    </button>
                   </form>
 
-                  <hr class="my-4">
+                  <hr class="my-4" />
 
-                  <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">Total price</h5>
-                    <h5>{{ cart?.totalPrice + cart?.taxPrice || 0 |currency:'EUR' }}</h5>
+                  <div class="summary-item">
+                    <h5>Total Price</h5>
+                    <h5>
+                      {{
+                        cart?.totalPrice + cart?.taxPrice || 0
+                          | currency : "EUR"
+                      }}
+                    </h5>
                   </div>
 
                   @if (cart && cart.totalPriceAfterDiscount) {
-                    <div class="d-flex justify-content-between mb-5">
-                      <h5 class="text-uppercase">After Discount</h5>
-                      <h5>{{ cart?.totalPriceAfterDiscount + cart?.taxPrice || 0 |currency:'EUR' }}</h5>
-                    </div>
+                  <div class="summary-item">
+                    <h5>After Discount</h5>
+                    <h5>
+                      {{
+                        cart?.totalPriceAfterDiscount + cart?.taxPrice || 0
+                          | currency : "EUR"
+                      }}
+                    </h5>
+                  </div>
                   }
 
-                  <button type="button" (click)="checkout()" [disabled]="!cart" data-mdb-button-init
-                          data-mdb-ripple-init
-                          class="btn btn-danger btn-block btn-lg" data-mdb-ripple-color="dark">Checkout
+                  <button
+                    type="button"
+                    (click)="checkout()"
+                    [disabled]="!cart"
+                    class="btn btn-danger btn-block btn-lg checkout-button"
+                  >
+                    Checkout
                   </button>
-
                 </div>
               </div>
             </div>

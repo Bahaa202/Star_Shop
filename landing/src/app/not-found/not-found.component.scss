@@ -3,49 +3,49 @@
 }
 
 .st0 {
-  fill: #fff
+  fill: #fff;
 }
 
 .st2 {
-  fill: #5d89af
+  fill: #5d89af;
 }
 
 .st3 {
-  fill: #709abf
+  fill: #709abf;
 }
 
 .st4,
 .st6 {
   fill: #fff;
   stroke: #b3dcdf;
-  stroke-miterlimit: 10
+  stroke-miterlimit: 10;
 }
 
 .st6 {
   stroke: #5d89af;
-  stroke-width: 2
+  stroke-width: 2;
 }
 
 .st7,
 .st8,
 .st9 {
   stroke: #709abf;
-  stroke-miterlimit: 10
+  stroke-miterlimit: 10;
 }
 
 .st7 {
   stroke-width: 5;
   stroke-linecap: round;
-  fill: none
+  fill: none;
 }
 
 .st8,
 .st9 {
-  fill: #fff
+  fill: #fff;
 }
 
 .st9 {
-  fill: none
+  fill: none;
 }
 
 .st10 {
@@ -110,7 +110,6 @@
     transform: translateX(1000px);
   }
 }
-
 
 @keyframes slide {
   from {
